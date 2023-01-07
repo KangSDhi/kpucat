@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistem Informasi Computer Assisted Test | Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/adminlte.min.css') }}">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <img src="{{ asset('images/logoKPU.png') }}" width="49" height="56"><br><a href="" class="h1"></a>
+                <div class="text-center">
+                    Komisi Pemilihan Umum <br>
+                    Republik Indonesia
+                </div>
+            </div>
+
+            <div class="card-body">
+                {{-- @if(session()->has('status')) --}}
+                {{-- <span class="badge badge-danger">{{session('status')}}</span> --}}
+                {{-- @endif --}}
+                @if(session()->has('error'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
+                <p class="login-box-msg">Sistem Informasi Computer Assisted Test</p>
+                <form class="pt-3" method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="email" name ="email"class="form-control form-control-lg @error('email') is-invalid @enderror" placeholder="Masukan email"">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password"  name ="password" class="form-control form-control-lg @error ('password') is-invalid @enderror"  placeholder="Masukan Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block btn-outline-primary">Masuk</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
+</body>
+</html>
